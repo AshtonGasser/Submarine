@@ -1,8 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-
-router.get('/', (req, res) => {
+const { rejectUnauthenticated, rejectLowAccess, } = require('../modules/authentication-middleware')
+router.get('/', rejectUnauthenticated, rejectLowAccess ,(req, res) => {
   // what is the value of req.user????
   console.log('req.user:', req.user);
 
